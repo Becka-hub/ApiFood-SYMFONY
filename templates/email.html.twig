@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		{% block stylesheets %}{% endblock %}
+	</head>
+	<style>
+		div {
+			font-family: Helvetica, sans-serif;
+		}
+		h2 {
+			font-size: 18px;
+			color: #da0037;
+			margin-top:20px;
+			font-weight:700;
+			text-transform:uppercase;
+		}
+		a{
+		color:blue;
+		}
+		img{
+			width:400px;
+			margin-top:15px;
+		}
+	</style>
+	<body>
+		{% block body %}
+
+<img src="{{ email.image('@img/logo.png') }}" alt="Logo">
+<h2>Bonjour {{nom}} {{prenom}}</h2>
+<p>Cliquer le lien pour rediriger vers la page du changement de mot de passe.</p>
+<a href='http://localhost:3000/reset/{{resetToken.token}}'>Changer mot de passe</a> 
+
+<p>Cette lien est expirer dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.</p>
+		{% endblock %}
+	</body>
+</html>
